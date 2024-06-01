@@ -58,13 +58,15 @@ public class PollListActivity extends AppCompatActivity {
 
         pollsRecyclerViewAdapter = new PollsRecyclerViewAdapter(this, pollList);
         pollRecyclerView.setAdapter(pollsRecyclerViewAdapter);
-
-
-
-
-
-
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        fetchPolls();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -94,7 +96,7 @@ public class PollListActivity extends AppCompatActivity {
         // Fetch polls from database
         pollList.clear();
 
-        Query query = db.collection("polls").whereEqualTo("courseId", courseId);
+        Query query = db.collection("polls").whereEqualTo("courseId", courseId).orderBy("date", Query.Direction.DESCENDING);
         if (accountType.equals("students")) {
             query = query.whereEqualTo("status", true);
         }
