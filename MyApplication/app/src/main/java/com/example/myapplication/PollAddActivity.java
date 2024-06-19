@@ -82,7 +82,7 @@ public class PollAddActivity extends AppCompatActivity {
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
-        editText.setHint("Option " + (optionCount + 1));
+        editText.setHint("Seçenek " + (optionCount + 1));
 
         editText.setBackground(getDrawable(R.drawable.my_edit_text));
         editText.setPadding(20,0,0,0);
@@ -143,10 +143,10 @@ public class PollAddActivity extends AppCompatActivity {
         poll.put("date", FieldValue.serverTimestamp());
 
         db.collection("polls").add(poll).addOnSuccessListener(aVoid -> {
-            Intent intent = new Intent(PollAddActivity.this, PollListActivity.class);
+            /*Intent intent = new Intent(PollAddActivity.this, PollListActivity.class);
             intent.putExtra("courseId", courseID);
             intent.putExtra("accountType",accountType);
-            startActivity(intent);
+            startActivity(intent);*/
             finish();
         }).addOnFailureListener(new OnFailureListener() {
             @Override
